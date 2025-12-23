@@ -7,7 +7,7 @@ import time
 # --------------------
 # CONFIG & DESIGN (Noir & Vert OneTwo)
 # --------------------
-st.set_page_config(page_title="OneTwo OneTwo - Le Transcripteur", layout="wide")
+st.set_page_config(page_title="OneTwo - Le Transcripteur", layout="wide")
 
 st.markdown(
     """
@@ -71,8 +71,8 @@ def format_timestamp(sec):
 col_left, col_center, col_right = st.columns([1, 2, 1])
 
 with col_center:
-    if Path("logo_onetwo.png").exists():
-        st.image("logo_onetwo.png", use_container_width=True)
+    if Path("img_83hf92z_01.png").exists():
+        st.image("img_83hf92z_01.png", use_container_width=True)
     
     st.markdown("<h1 style='text-align: center; margin-bottom: 0;'>OneTwo OneTwo</h1>", unsafe_allow_html=True)
     st.markdown("<h2 style='text-align: center; margin-top: 0;'>Le Transcripteur</h2>", unsafe_allow_html=True)
