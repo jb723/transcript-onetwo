@@ -7,7 +7,7 @@ import time
 # --------------------
 # CONFIG & DESIGN (Noir & Vert OneTwo)
 # --------------------
-st.set_page_config(page_title="OneTwo Transcript", layout="wide")
+st.set_page_config(page_title="OneTwo OneTwo - Le Transcripteur", layout="wide")
 
 st.markdown(
     """
@@ -30,6 +30,7 @@ st.markdown(
         width: 100%;
         border-radius: 10px;
         font-weight: bold;
+        height: 3em;
     }
     .stButton > button:hover { 
         background-color: #61F885 !important; 
@@ -73,8 +74,8 @@ with col_center:
     if Path("logo_onetwo.png").exists():
         st.image("logo_onetwo.png", use_container_width=True)
     
-    st.markdown("<h1 style='text-align: center;'>ONETWO TRANSCRIPT</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center;'>Outil interne de transcription audio & vidéo</p>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; margin-bottom: 0;'>OneTwo OneTwo</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; margin-top: 0;'>Le Transcripteur</h2>", unsafe_allow_html=True)
     st.markdown("---")
 
     uploaded_file = st.file_uploader(
@@ -83,7 +84,7 @@ with col_center:
     )
 
     if uploaded_file:
-        if st.button("LANCER LA TRANSCRIPTION"):
+        if st.button("LANCER LE TRANSCRIPTEUR"):
             audio_path = f"/tmp/{uploaded_file.name}"
             with open(audio_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
@@ -95,7 +96,7 @@ with col_center:
                 status_text.markdown("✨ *Initialisation du moteur IA...*")
                 progress_bar.progress(20)
                 
-                status_text.markdown("🎙️ *Transcription en cours... cela peut prendre quelques minutes.*")
+                status_text.markdown("🎙️ *Transcription en cours...*")
                 progress_bar.progress(50)
                 
                 result = model.transcribe(
@@ -135,5 +136,8 @@ with col_center:
                 if os.path.exists(audio_path):
                     os.remove(audio_path)
 
+# --------------------
+# PIED DE PAGE
+# --------------------
 st.markdown("---")
-st.caption("OneTwo Transcript v2.0 - Usage interne uniquement")
+st.markdown("<p style='text-align: center; color: #61F885;'>OneTwo OneTwo - L'agence podcast des marques et des entreprises.<br>onetwo-onetwo.com</p>", unsafe_allow_html=True)
