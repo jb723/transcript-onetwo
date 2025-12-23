@@ -12,20 +12,17 @@ st.set_page_config(page_title="OneTwo Transcript", layout="wide")
 st.markdown(
     """
     <style>
-    /* Fond noir et texte vert fluo */
     html, body, [data-testid="stApp"] { 
         background-color: #000000 !important; 
         color: #61F885 !important; 
     }
     section.main { background-color: #000000 !important; }
     
-    /* Couleurs des textes et titres */
     div, p, span, label, h1, h2, h3, h4, h5, h6 { 
         color: #61F885 !important; 
         background-color: transparent !important; 
     }
 
-    /* Personnalisation des boutons */
     .stButton > button { 
         background-color: #000000 !important; 
         color: #61F885 !important; 
@@ -39,13 +36,11 @@ st.markdown(
         color: #000000 !important; 
     }
 
-    /* Zone de dépôt de fichier */
     [data-testid="stFileUploader"] { 
         background-color: #000000 !important; 
         border: 2px dashed #61F885 !important; 
     }
 
-    /* Masquer le menu Streamlit pour faire plus "App" */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
@@ -75,7 +70,6 @@ def format_timestamp(sec):
 col_left, col_center, col_right = st.columns([1, 2, 1])
 
 with col_center:
-    # Affichage du logo centré
     if Path("logo_onetwo.png").exists():
         st.image("logo_onetwo.png", use_container_width=True)
     
@@ -90,22 +84,17 @@ with col_center:
 
     if uploaded_file:
         if st.button("LANCER LA TRANSCRIPTION"):
-            # Sauvegarde temporaire sur le serveur cloud
             audio_path = f"/tmp/{uploaded_file.name}"
             with open(audio_path, "wb") as f:
                 f.write(uploaded_file.getbuffer())
 
-            # --- BARRE DE PROGRESSION ---
             progress_bar = st.progress(0)
             status_text = st.empty()
             
             try:
-                # Étape 1 : Analyse
                 status_text.markdown("✨ *Initialisation du moteur IA...*")
                 progress_bar.progress(20)
-                time.sleep(1) # Petit délai visuel
                 
-                # Étape 2 : Transcription (C'est ici que l'IA travaille)
                 status_text.markdown("🎙️ *Transcription en cours... cela peut prendre quelques minutes.*")
                 progress_bar.progress(50)
                 
@@ -115,8 +104,22 @@ with col_center:
                     condition_on_previous_text=False
                 )
                 
-                # Étape 3 : Mise en forme
                 progress_bar.progress(90)
-                status_text.markdown("📝 *Mise en forme des fichiers TXT et SRT...*")
+                status_text.markdown("📝 *Mise en forme des fichiers...*")
                 
-                segments = result.get("
+                segments = result.get("segments", [])
+                title = Path(audio_path).stem.upper()
+                
+                txt_output = f"{title}\n{'='*len(title)}\n\n"
+                srt_output = ""
+                
+                for i, seg in enumerate(segments, 1):
+                    time_block = f"{format_timestamp(seg['start'])} --> {format_timestamp(seg['end'])}"
+                    txt_output += f"{time_block}\n{seg['text'].strip()}\n\n"
+                    srt_output += f"{i}\n{time_block}\n{seg['text'].strip()}\n\n"
+
+                progress_bar.progress(100)
+                status_text.empty()
+                st.success("✅ Transcription terminée !")
+
+                dl_col1, dl_col2 =
