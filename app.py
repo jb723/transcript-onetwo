@@ -7,7 +7,7 @@ import time
 # --------------------
 # CONFIG & DESIGN (Noir & Vert OneTwo)
 # --------------------
-st.set_page_config(page_title="OneTwo - Le Transcripteur", layout="wide")
+st.set_page_config(page_title="LeTr@n$cRIPt", layout="wide")
 
 st.markdown(
     """
