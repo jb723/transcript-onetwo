@@ -74,8 +74,8 @@ with col_center:
     if Path("img_83hf92z_01.png").exists():
         st.image("img_83hf92z_01.png", use_container_width=True)
     
-    st.markdown("<h1 style='text-align: center; margin-bottom: 0;'>OneTwo OneTwo</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; margin-top: 0;'>Le Transcripteur</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; margin-bottom: 0;'></h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; margin-top: 0;'>LeTr@n$cRIPt</h2>", unsafe_allow_html=True)
     st.markdown("---")
 
     uploaded_file = st.file_uploader(
