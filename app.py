@@ -140,4 +140,4 @@ with col_center:
 # PIED DE PAGE
 # --------------------
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #61F885;'>OneTwo OneTwo - L'agence podcast des marques et des entreprises.<br>Usage Interne</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #61F885;'>OneTwo<br>Usage Interne</p>", unsafe_allow_html=True)
