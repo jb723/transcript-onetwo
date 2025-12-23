@@ -122,4 +122,18 @@ with col_center:
                 status_text.empty()
                 st.success("✅ Transcription terminée !")
 
-                dl_col1, dl_col2 =
+                dl_col1, dl_col2 = st.columns(2)
+                dl_col1.download_button("📥 Télécharger TXT", txt_output, file_name=f"{title}.txt")
+                dl_col2.download_button("📥 Télécharger SRT", srt_output, file_name=f"{title}.srt")
+                
+                with st.expander("👁️ Voir l'aperçu du texte"):
+                    st.text(txt_output)
+
+            except Exception as e:
+                st.error(f"❌ Erreur : {e}")
+            finally:
+                if os.path.exists(audio_path):
+                    os.remove(audio_path)
+
+st.markdown("---")
+st.caption("OneTwo Transcript v2.0 - Usage interne uniquement")
